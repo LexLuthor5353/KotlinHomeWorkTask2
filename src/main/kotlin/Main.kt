@@ -1,14 +1,16 @@
 fun main() {
-    val cardType: String = "MasterCard"
-    val totalTransfersInMon: Int = 70_000
-    val transferAmount: Int = 10_000
+    val tax = calcTax("Mir", 10_000, 75_000)
+    println(tax)
 
-    if (transferAmount > 150_000) {
+}
+
+fun calcTax(cardType: String, transferAmount: Int, limitInDay:Int) {
+        if (transferAmount > 150_000) {
         println("Ошибка! Превышен лимит на один перевод.")
         return
     }
 
-    if (totalTransfersInMon + transferAmount > 600_000) {
+    if (limitInDay + transferAmount > 600_000) {
         println("Ошибка! Превышен месячный лимит на переводы.")
         return
     }
@@ -16,7 +18,7 @@ fun main() {
     val tax = when (cardType) {
         "MasterCard" -> {
             val freeLimit = 75_000
-            if (totalTransfersInMon + transferAmount > freeLimit) {
+            if (limitInDay + transferAmount > freeLimit) {
                 transferAmount * 0.006 + 20
             } else {
                 0.0
@@ -44,4 +46,5 @@ fun main() {
 
     println("Сумма перевода: $transferAmount рублей")
     println("Комиссия составит: $tax рублей")
+
 }
