@@ -3,7 +3,7 @@ fun main() {
     println(tax)
 }
 
-fun calcTax(cardType: String, transferAmount: Int, limitInDay: Int) {
+fun calcTax(cardType: String = "Mir", transferAmount: Int = 10_000, limitInDay: Int = 0) {
     if (transferAmount > 150_000) {
         println("Ошибка! Превышен лимит на один перевод.")
         return
